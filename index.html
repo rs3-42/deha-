@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Connexion au Dashboard</h2>
+        <form id="registerForm">
+            <label for="username">Nom d'utilisateur:</label>
+            <input type="text" id="username" name="username" required><br><br>
+        
+            <label for="password">Mot de passe:</label>
+            <input type="password" id="password" name="password" required><br><br>
+        
+            ><button type="submit">S'inscrire</button>
+        </form>
+        
+        <script>
+            document.getElementById('registerForm').addEventListener('submit', async function(event) {
+                event.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+        
+                const response = await fetch('http://localhost:3000/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+        
+                if (response.ok) {
+                    alert('Inscription réussie');
+                } else {
+                    alert('Erreur lors de l\'inscription');
+                }
+            });
+        </script>
+        
+    </div>
+</body>
+</html>
